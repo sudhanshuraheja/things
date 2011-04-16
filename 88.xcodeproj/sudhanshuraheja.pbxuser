@@ -1,0 +1,76 @@
+// !$*UTF8*$!
+{
+	5E6E60A51359B98D001BBCBB /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		addToTargets = (
+		);
+		codeSenseManager = 5E6E60AA1359B98D001BBCBB /* Code sense */;
+		ignoreBreakpointsInProjectsDict = {
+		};
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					833,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 324647440;
+			PBXWorkspaceStateSaveDate = 324647440;
+		};
+		sourceControlManager = 5E6E60A91359B98D001BBCBB /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	5E6E60A91359B98D001BBCBB /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	5E6E60AA1359B98D001BBCBB /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	5E6E60C21359B9F7001BBCBB /* app.js */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{566, 722}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 1290}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 415}}";
+			sepNavSelRange = "{369, 0}";
+			sepNavVisRange = "{0, 569}";
+		};
+	};
+	5E6E60C31359B9F7001BBCBB /* index.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 415}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 455}";
+		};
+	};
+	5E6E60C51359B9F7001BBCBB /* settings.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {5612, 415}}";
+			sepNavSelRange = "{190, 0}";
+			sepNavVisRange = "{0, 980}";
+		};
+	};
+}

@@ -1,21 +1,58 @@
 var url = require('url');
+var path = require('path');
 var settings = require('../settings/settings');
 
+var _response;
+var _request;
+
+var _route;
+
 exports.createServer = function(request, response) {
-	var route = getControllerAndMethod(request.url);
-	console.log(route);
+	_response = response;
+	_request = request;
+	
+	_route = getControllerAndMethod();
+	console.log(_route);
 
-	if(!route.foundMatch) {
+	if(!_route.foundMatch) {
 		show404(response);
+	} else {
+		path.exists(settings.basepath + '/app/' + _route.controller + '.js', checkController);
+		//console.log('checking for ' + settings.basepath + '/app/' + route.controller + '.js');
 	}
+};
 
-	response.writeHead(200, { "Content-Type": "text/html" });
-	response.write("hello world");
-	response.end();
-}
+checkController = function(exists) {
+	console.log(exists);
+	if(exists) {
+		req = url.parse(_request.url);
+		
+		// Require the controller
+		var controller = require('../app/' + _route.controller);
+		var method = _route.method;
+		
+		var data = controller[method];
+		
+		var responseCode = data.responseCode ? data.responseCode : 200;
+		var contentType = data.contentType ? data.contentType : "text/html";
+		var html = data.html ? data.html : 'No data sent';
+		
+		_response.writeHead(responseCode, { "Content-Type": contentType });
+		_response.write(html);
+		_response.end();		
+	} else {
+		show404();
+	}
+};
 
-getControllerAndMethod = function(request_url) {
-	pathname = url.parse(request_url).pathname.split('/');
+show404 = function() {
+	_response.writeHead(404, { "Content-Type": "text/html" });
+	_response.write(settings.doc404);
+	_response.end();
+};
+
+getControllerAndMethod = function() {
+	pathname = url.parse(_request.url).pathname.split('/');
 
 	var controller = '';
 	var method = '';
@@ -43,4 +80,4 @@ getControllerAndMethod = function(request_url) {
 	}
 
 	return { "foundMatch": foundMatch, "controller": controller, "method": method };
-}
+};

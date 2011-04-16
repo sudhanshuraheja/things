@@ -1,0 +1,138 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXFileReference section */
+		5E6E60B11359B9F7001BBCBB /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		5E6E60C21359B9F7001BBCBB /* app.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
+		5E6E60C31359B9F7001BBCBB /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		5E6E60C51359B9F7001BBCBB /* settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = settings.js; sourceTree = "<group>"; };
+		5E6E60CD1359BCE8001BBCBB /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		5E6E60A31359B98D001BBCBB = {
+			isa = PBXGroup;
+			children = (
+				5E6E60CB1359BCE8001BBCBB /* public */,
+				5E6E60B01359B9F7001BBCBB /* app */,
+				5E6E60C11359B9F7001BBCBB /* framework */,
+				5E6E60C31359B9F7001BBCBB /* index.js */,
+				5E6E60C41359B9F7001BBCBB /* settings */,
+			);
+			sourceTree = "<group>";
+		};
+		5E6E60B01359B9F7001BBCBB /* app */ = {
+			isa = PBXGroup;
+			children = (
+				5E6E60B11359B9F7001BBCBB /* test.js */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		5E6E60C11359B9F7001BBCBB /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				5E6E60C21359B9F7001BBCBB /* app.js */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		5E6E60C41359B9F7001BBCBB /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				5E6E60C51359B9F7001BBCBB /* settings.js */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		5E6E60CB1359BCE8001BBCBB /* public */ = {
+			isa = PBXGroup;
+			children = (
+				5E6E60CC1359BCE8001BBCBB /* images */,
+				5E6E60CE1359BCE8001BBCBB /* javascript */,
+				5E6E60CF1359BCE8001BBCBB /* style */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
+		5E6E60CC1359BCE8001BBCBB /* images */ = {
+			isa = PBXGroup;
+			children = (
+				5E6E60CD1359BCE8001BBCBB /* favicon.ico */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		5E6E60CE1359BCE8001BBCBB /* javascript */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = javascript;
+			sourceTree = "<group>";
+		};
+		5E6E60CF1359BCE8001BBCBB /* style */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = style;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		5E6E60A51359B98D001BBCBB /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 5E6E60A81359B98D001BBCBB /* Build configuration list for PBXProject "88" */;
+			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 5E6E60A31359B98D001BBCBB;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		5E6E60A61359B98D001BBCBB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		5E6E60A71359B98D001BBCBB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E6E60A81359B98D001BBCBB /* Build configuration list for PBXProject "88" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E6E60A61359B98D001BBCBB /* Debug */,
+				5E6E60A71359B98D001BBCBB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E6E60A51359B98D001BBCBB /* Project object */;
+}
