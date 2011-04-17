@@ -4,7 +4,13 @@ exports.basepath = '';
 
 exports.routes = [
 	[ "/favicon.ico",
-		["public", "images"] ],
+		["static"] ],
+	[ "/public/images/@",
+		["static"] ],
+	[ "/public/style/@",
+		["static"] ],
+	[ "/public/javascript/@",
+		["static"] ],
 	[ "/test/@",
 		["test", "base"] ]
 ];

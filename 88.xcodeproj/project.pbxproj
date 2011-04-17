@@ -11,7 +11,6 @@
 		5E6E60C21359B9F7001BBCBB /* app.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = app.js; sourceTree = "<group>"; };
 		5E6E60C31359B9F7001BBCBB /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 		5E6E60C51359B9F7001BBCBB /* settings.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = settings.js; sourceTree = "<group>"; };
-		5E6E60CD1359BCE8001BBCBB /* favicon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = favicon.ico; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -63,7 +62,6 @@
 		5E6E60CC1359BCE8001BBCBB /* images */ = {
 			isa = PBXGroup;
 			children = (
-				5E6E60CD1359BCE8001BBCBB /* favicon.ico */,
 			);
 			path = images;
 			sourceTree = "<group>";

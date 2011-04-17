@@ -1,5 +1,7 @@
 var url = require('url');
 var path = require('path');
+var fs = require('fs');
+
 var settings = require('../settings/settings');
 
 var _response;
@@ -17,10 +19,31 @@ exports.createServer = function(request, response) {
 	if(!_route.foundMatch) {
 		show404(response);
 	} else {
-		path.exists(settings.basepath + '/app/' + _route.controller + '.js', checkController);
+		// If _route.controller = 'public', then use the static file loader from /framework/static.js
+		if(_route.controller == 'static') {
+			path.exists(settings.basepath + url.parse(_request.url).pathname, loadStaticFile);
+		} else {
+			path.exists(settings.basepath + '/app/' + _route.controller + '.js', checkController);
+		}
 		//console.log('checking for ' + settings.basepath + '/app/' + route.controller + '.js');
 	}
 };
+
+loadStaticFile = function(exists) {
+	if(exists) {
+		var filename = settings.basepath + url.parse(_request.url).pathname;
+		fs.readFile(filename, "binary", function(err, file) {
+					if(err) {
+						show404(); return;
+					}
+					_response.writeHead(200, { "Content-Type": "text/plain" });
+					_response.write(file, "binary");
+					_response.end();
+					});
+	} else {
+		show404();
+	}
+}
 
 checkController = function(exists) {
 	console.log(exists);

@@ -1,5 +1,33 @@
 // !$*UTF8*$!
 {
+	5E5B45B6135A52CC0093DBBF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5E6E60C51359B9F7001BBCBB /* settings.js */;
+		name = "settings.js: 7";
+		rLen = 0;
+		rLoc = 126;
+		rType = 0;
+		vrLen = 971;
+		vrLoc = 0;
+	};
+	5E5B45B7135A52CC0093DBBF /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5E6E60C21359B9F7001BBCBB /* app.js */;
+		name = "app.js: 38";
+		rLen = 0;
+		rLoc = 1031;
+		rType = 0;
+		vrLen = 949;
+		vrLoc = 306;
+	};
+	5E5B45B8135A52CC0093DBBF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5E6E60CD1359BCE8001BBCBB /* favicon.ico */;
+	};
+	5E5B45B9135A52CC0093DBBF /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5E6E60CD1359BCE8001BBCBB /* favicon.ico */;
+	};
 	5E6E60A51359B98D001BBCBB /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		addToTargets = (
@@ -15,7 +43,7 @@
 					20,
 					833,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -30,8 +58,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 324647440;
-			PBXWorkspaceStateSaveDate = 324647440;
+			PBXPerProjectTemplateStateSaveDate = 324685766;
+			PBXWorkspaceStateSaveDate = 324685766;
+		};
+		perUserProjectItems = {
+			5E5B45B6135A52CC0093DBBF /* PBXTextBookmark */ = 5E5B45B6135A52CC0093DBBF /* PBXTextBookmark */;
+			5E5B45B7135A52CC0093DBBF /* PBXTextBookmark */ = 5E5B45B7135A52CC0093DBBF /* PBXTextBookmark */;
+			5E5B45B8135A52CC0093DBBF /* PBXBookmark */ = 5E5B45B8135A52CC0093DBBF /* PBXBookmark */;
+			5E5B45B9135A52CC0093DBBF /* PBXBookmark */ = 5E5B45B9135A52CC0093DBBF /* PBXBookmark */;
 		};
 		sourceControlManager = 5E6E60A91359B98D001BBCBB /* Source Control */;
 		userBuildSettings = {
@@ -51,26 +85,40 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	5E6E60B11359B9F7001BBCBB /* test.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 522}}";
+			sepNavSelRange = "{100, 0}";
+			sepNavVisRange = "{0, 103}";
+		};
+	};
 	5E6E60C21359B9F7001BBCBB /* app.js */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{566, 722}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 1290}\";\n    s = 0;\n}";
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 415}}";
-			sepNavSelRange = "{369, 0}";
-			sepNavVisRange = "{0, 569}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1822, 114}\";\n            s = 0;\n        },\n                {\n            r = \"{1977, 723}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 2703}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 936}}";
+			sepNavSelRange = "{269, 0}";
+			sepNavVisRange = "{0, 845}";
 		};
 	};
 	5E6E60C31359B9F7001BBCBB /* index.js */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1011, 415}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavSelRange = "{247, 0}";
 			sepNavVisRange = "{0, 455}";
 		};
 	};
 	5E6E60C51359B9F7001BBCBB /* settings.js */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {5612, 415}}";
-			sepNavSelRange = "{190, 0}";
-			sepNavVisRange = "{0, 980}";
+			sepNavSelRange = "{230, 0}";
+			sepNavVisRange = "{0, 1091}";
 		};
+	};
+	5E6E60CD1359BCE8001BBCBB /* favicon.ico */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = image.ico;
+		name = favicon.ico;
+		path = /Users/sudhanshuraheja/Projects/88/public/images/favicon.ico;
+		sourceTree = "<absolute>";
 	};
 }
