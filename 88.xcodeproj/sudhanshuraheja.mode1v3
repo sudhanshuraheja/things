@@ -274,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>5</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -328,10 +328,12 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5E64D4801361C304004B0099</string>
+										<string>5E64D70F1367136D004B0099</string>
 										<key>history</key>
 										<array>
-											<string>5E64D47F1361C304004B0099</string>
+											<string>5E64D6F813670560004B0099</string>
+											<string>5E64D70113670EE5004B0099</string>
+											<string>5E64D70213670EE5004B0099</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -343,14 +345,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1072, 428}}</string>
+								<string>{{0, 0}, {1072, 534}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 98 1280 680 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>428pt</string>
+							<string>534pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -363,14 +365,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 433}, {1072, 206}}</string>
+								<string>{{0, 539}, {1072, 100}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 98 1280 680 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>206pt</string>
+							<string>100pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -389,9 +391,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>5E64D4811361C304004B0099</string>
+				<string>5E64D6FB13670560004B0099</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>5E64D4821361C304004B0099</string>
+				<string>5E64D6FC13670560004B0099</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>

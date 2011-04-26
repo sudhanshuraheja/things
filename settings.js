@@ -12,7 +12,8 @@ exports.dbHost = 'localhost';
 exports.dbPort = '27017';
 
 // The routes
-exports.routes = [];
+exports.routes = [
+];
 
 // The html which gets rendered when a 404 is to be shown
 exports.doc404 = { error: { code: 404, description: "This url does not exist"}};
