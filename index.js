@@ -11,12 +11,15 @@ var fs = require('fs');
 var settings = require('./settings');
 settings.basepath = __dirname;
 
+var utils = require('./utils');
 
 // Create a server
 http.createServer(server).listen(settings.port, settings.hostname);
 
+
 // Shout that you're up
-sys.puts('Server is running at http://' + settings.hostname + ':' + settings.port);
+utils.log('Server is running at http://' + settings.hostname + ':' + settings.port, 'INFO');
+
 
 
 
@@ -28,10 +31,12 @@ sys.puts('Server is running at http://' + settings.hostname + ':' + settings.por
 
 // What does the server do
 function server(request, response) {
-	console.log(request.url);
+	utils.log(request.url, 'INFO');
 	var req = url.parse(request.url);
 	// Contains the controller and method
 	var _params = utils.getRequestParams(req.pathname);
+	
+	utils.log(request);
 	
 	// Contains the data which you pick up from the request
 	var _getData = '';
@@ -113,94 +118,9 @@ function server(request, response) {
 			};
 			path.exists(controllerFile, controllerFileGetExistsCallback);
 		} else {
-			console.log('Can\'t handle method : ' + request.method);
+			utils.log('Can\'t handle method : ' + request.method, 'ERRO');
 		}		
 	}
 	
 };
-
-
-
-//
-// Utilities
-//
-
-
-// Utils for use throughout the application
-var utils = {};
-
-utils.show404 = function(response) {
-	var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
-	utils.showData(response, data);
-};
-
-utils.showData = function(response, data) {
-	var responseCode = data.responseCode ? data.responseCode : 200;
-	var contentType = data.contentType ? data.contentType : "text/html";
-	var html = data.html ? data.html : "+++";
-	var dataType = data.dataType ? data.dataType : '';
-	
-	response.writeHead(responseCode, { "Content-Type": contentType });
-	if(dataType != '') {
-		response.write(html, dataType);
-	} else {
-		response.write(html);
-	}
-	response.end();
-};
-
-utils.showStatic = function(response, filepath) {
-	filepath = settings.basepath + filepath;
-	var fileExistsCallback = function(exists) {
-		if(exists) {
-			var staticReadFileCallback = function(err, file) {
-				if(err) {
-					utils.show404(response);
-				} else {
-					var output = { responseCode: 200, contentType: "text/plain",  dataType: "binary", html: file};
-					console.log(output);
-					utils.showData(response, output);
-				}
-			};
-			fs.readFile(filepath, "binary", staticReadFileCallback);
-		} else {
-			utils.show404(response);
-			console.log(filepath + ' does not exist');
-		}
-	};
-	path.exists(filepath, fileExistsCallback);
-};
-
-utils.objectify = function(data) {
-	var ret = {};
-	if(data) {
-		var parts = data.split('&');
-		for(x in parts) {
-			var keyvalue = parts[x].split('=');
-			ret[keyvalue[0]] = keyvalue[1];
-		}
-	}
-	return ret;
-};
-
-utils.getRequestParams = function(pathname) {
-	var ret = {};
-	var parts = pathname.split('/');
-	var actualCount = 0;
-	for(i = 0; i < parts.length; i++) {
-		if(parts[i] != '') {
-			if(actualCount == 0)
-				ret['controller'] = parts[i];
-			else if(actualCount == 1)
-				ret['method'] = parts[i];
-			else
-				ret['p' + actualCount] = parts[i];
-			actualCount++;
-		}
-	}
-	if(!ret.controller || (ret.controller == '')) ret.controller = 'home';
-	if(!ret.method || (ret.method == '')) ret.method = 'base';
-	return ret;
-};
-
 
