@@ -4,29 +4,8 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 
-var settings = {
-	// The details about where the site is running
-	hostname: 'localhost',
-	port: 8080,
-
-	// Set your basepath in settings, so that the rest of the system can use it
-	basepath: __dirname,
-
-	// database
-	dbName: 'test',
-	dbHost: 'localhost',
-	dbPort: '27017',
-
-	// The routes
-	routes: [],
-
-	// The html which gets rendered when a 404 is to be shown
-	doc404: { error: { code: 404, description: "This url does not exist"}}
-};
-
-// Add the routes for your application
-settings.routes.push(["/", [ "home", "base" ]]);
-settings.routes.push(["/test/@", [ "test", "base" ]]);
+var settings = require('./settings');
+settings.basepath = __dirname;
 
 
 // Create a server
@@ -40,29 +19,46 @@ sys.puts('Server is running at http://' + settings.hostname + ':' + settings.por
 // What does the server do
 function server(request, response) {
 	var req = url.parse(request.url);
-	var pathname = req.pathname;
+	// Contains the controller and method
+	var _params = utils.getRequestParams(req.pathname);
 	
+	// Contains the data which you pick up from the request
 	var _getData = '';
 	var _postData = '';
 	
+	// Contains associative arrays for get and post
 	var _get = {};
 	var _post = {};
 	
+	// If we're getting post data, there are two callbacks onData and onEnd
 	if(request.method == 'POST') {
 		
+		// Closure for onData callback, write all data into a common variable
 		var onDataCallback = function(partialData) {
 			_postData += partialData;
 		};
 		request.on('data', onDataCallback);
 		
+		// Closure for onEnd callback, after this data is ready for processing
 		var onEndCallback = function(end) {
 			_getData = req.query;
 			
 			_get = utils.objectify(_getData);
 			_post = utils.objectify(_postData);
-			// Do whatever you want with post data
-			console.log(_get);
-			console.log(_post);
+			
+			// Start page processing for post
+			var controllerFile = settings.basepath + '/app/' + _params.controller + '.js';
+			
+			var controllerFileExistsCallback = function(exists) {
+				if(!exists) {
+					utils.show404(response);
+				} else {
+					var controllerClass = require(controllerFile);
+					var output = controllerClass[_params.method]();
+					utils.showData(response, output);
+				}
+			};
+			path.exists(controllerFile, controllerFileExistsCallback);
 		};
 		request.on('end', onEndCallback);
 		
@@ -70,9 +66,7 @@ function server(request, response) {
 		_getData = req.query;
 		
 		_get = utils.objectify(_getData);
-		// Do whatever you want with get data
-		console.log(_get);
-		
+		// Start page processing for get
 	} else {
 		console.log('Can\'t handle method : ' + request.method);
 	}
@@ -83,8 +77,17 @@ function server(request, response) {
 var utils = {};
 
 utils.show404 = function(response) {
-	response.writeHead(404, { "Content-Type": "text/html" });
-	response.write(JSON.stringify(settings.doc404));
+	var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
+	utils.showData(response, data);
+};
+
+utils.showData = function(response, data) {
+	var responseCode = data.responseCode ? data.responseCode : 200;
+	var contentType = data.contentType ? data.contentType : "text/html";
+	var html = data.html ? data.html : "+++";
+	
+	response.writeHead(responseCode, { "Content-Type": contentType });
+	response.write(html);
 	response.end();
 };
 
@@ -95,6 +98,26 @@ utils.objectify = function(data) {
 		var keyvalue = parts[x].split('=');
 		ret[keyvalue[0]] = keyvalue[1];
 	}
+	return ret;
+};
+
+utils.getRequestParams = function(pathname) {
+	var ret = {};
+	var parts = pathname.split('/');
+	var actualCount = 0;
+	for(i = 0; i < parts.length; i++) {
+		if(parts[i] != '') {
+			if(actualCount == 0)
+				ret['controller'] = parts[i];
+			else if(actualCount == 1)
+				ret['method'] = parts[i];
+			else
+				ret['p' + actualCount] = parts[i];
+			actualCount++;
+		}
+	}
+	if(!ret.controller || (ret.controller == '')) ret.controller = 'home';
+	if(!ret.method || (ret.method == '')) ret.method = 'base';
 	return ret;
 };
 

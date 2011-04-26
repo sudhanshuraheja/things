@@ -1,9 +1,9 @@
-var html = require('../../framework/html.js');
+var settings = require('../settings');
 
 exports.hello = function() {
 	return 'hello';
 };
 
 exports.base = function() {
-	
+	return 'hello';
 };

@@ -1,11 +1,25 @@
 // !$*UTF8*$!
 {
+	5E64D4271361A557004B0099 /* home.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 505}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 556}";
+		};
+	};
+	5E64D4281361A557004B0099 /* test.js */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 505}}";
+			sepNavSelRange = "{142, 0}";
+			sepNavVisRange = "{0, 145}";
+		};
+	};
 	5E64D47F1361C304004B0099 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 5E6E60C31359B9F7001BBCBB /* index.js */;
 		name = "index.js: 165";
 		rLen = 0;
-		rLoc = 2945;
+		rLoc = 3266;
 		rType = 0;
 		vrLen = 918;
 		vrLoc = 0;
@@ -15,7 +29,7 @@
 		fRef = 5E6E60C31359B9F7001BBCBB /* index.js */;
 		name = "index.js: 71";
 		rLen = 0;
-		rLoc = 1689;
+		rLoc = 174;
 		rType = 0;
 		vrLen = 718;
 		vrLoc = 0;
@@ -77,9 +91,9 @@
 	};
 	5E6E60C31359B9F7001BBCBB /* index.js */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1011, 1313}}";
-			sepNavSelRange = "{1689, 0}";
-			sepNavVisRange = "{0, 718}";
+			sepNavIntBoundsRect = "{{0, 0}, {1011, 1820}}";
+			sepNavSelRange = "{2839, 0}";
+			sepNavVisRange = "{2015, 1021}";
 		};
 	};
 }
