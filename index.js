@@ -1,3 +1,7 @@
+//
+// Project Initialization
+//
+
 var sys = require('sys');
 var http = require('http');
 var url = require('url');
@@ -14,6 +18,12 @@ http.createServer(server).listen(settings.port, settings.hostname);
 // Shout that you're up
 sys.puts('Server is running at http://' + settings.hostname + ':' + settings.port);
 
+
+
+
+//
+// Server Code
+//
 
 
 // What does the server do
@@ -83,6 +93,12 @@ function server(request, response) {
 		console.log('Can\'t handle method : ' + request.method);
 	}
 };
+
+
+
+//
+// Utilities
+//
 
 
 // Utils for use throughout the application
