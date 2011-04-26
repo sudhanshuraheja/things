@@ -49,7 +49,7 @@ function server(request, response) {
 			// Start page processing for post
 			var controllerFile = settings.basepath + '/app/' + _params.controller + '.js';
 			
-			var controllerFileExistsCallback = function(exists) {
+			var controllerFilePostExistsCallback = function(exists) {
 				if(!exists) {
 					utils.show404(response);
 				} else {
@@ -58,7 +58,7 @@ function server(request, response) {
 					utils.showData(response, output);
 				}
 			};
-			path.exists(controllerFile, controllerFileExistsCallback);
+			path.exists(controllerFile, controllerFilePostExistsCallback);
 		};
 		request.on('end', onEndCallback);
 		
@@ -67,6 +67,18 @@ function server(request, response) {
 		
 		_get = utils.objectify(_getData);
 		// Start page processing for get
+		var controllerFile = settings.basepath + '/app/' + _params.controller + '.js';
+		
+		var controllerFileGetExistsCallback = function(exists) {
+			if(!exists) {
+				utils.show404(response);
+			} else {
+				var controllerClass = require(controllerFile);
+				var output = controllerClass[_params.method]();
+				utils.showData(response, output);
+			}
+		};
+		path.exists(controllerFile, controllerFileGetExistsCallback);
 	} else {
 		console.log('Can\'t handle method : ' + request.method);
 	}
