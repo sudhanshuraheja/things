@@ -7,13 +7,25 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		5E64D4271361A557004B0099 /* home.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = home.js; sourceTree = "<group>"; };
+		5E64D4281361A557004B0099 /* test.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		5E6E60C31359B9F7001BBCBB /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		5E64D4261361A557004B0099 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				5E64D4271361A557004B0099 /* home.js */,
+				5E64D4281361A557004B0099 /* test.js */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
 		5E6E60A31359B98D001BBCBB = {
 			isa = PBXGroup;
 			children = (
+				5E64D4261361A557004B0099 /* app */,
 				5E6E60C31359B9F7001BBCBB /* index.js */,
 			);
 			sourceTree = "<group>";
