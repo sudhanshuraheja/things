@@ -36,8 +36,6 @@ function server(request, response) {
 	// Contains the controller and method
 	var _params = utils.getRequestParams(req.pathname);
 	
-	utils.log(request);
-	
 	// Contains the data which you pick up from the request
 	var _getData = '';
 	var _postData = '';
@@ -45,6 +43,8 @@ function server(request, response) {
 	// Contains associative arrays for get and post
 	var _get = {};
 	var _post = {};
+	
+	var _global = {};
 	
 	// Check if we are being requested for a static file
 	// 1. /favicon.ico
@@ -76,6 +76,8 @@ function server(request, response) {
 				_get = utils.objectify(_getData);
 				_post = utils.objectify(_postData);
 				
+				_global = { get: _get, post: _post, params: _params };
+				
 				// Start page processing for post
 				var controllerFile = settings.basepath + '/app/' + _params.controller + '.js';
 				
@@ -85,7 +87,7 @@ function server(request, response) {
 					} else {
 						var controllerClass = require(controllerFile);
 						if(controllerClass[_params.method]) {
-							var output = controllerClass[_params.method]();
+							var output = controllerClass[_params.method](_global);
 							utils.showData(response, output);
 						} else {
 							utils.show404(response);						
@@ -100,6 +102,9 @@ function server(request, response) {
 			_getData = req.query;
 			
 			_get = utils.objectify(_getData);
+			
+			_global = { get: _get, post: _post, params: _params };
+			
 			// Start page processing for get
 			var controllerFile = settings.basepath + '/app/' + _params.controller + '.js';
 			
@@ -109,7 +114,7 @@ function server(request, response) {
 				} else {
 					var controllerClass = require(controllerFile);
 					if(controllerClass[_params.method]) {
-						var output = controllerClass[_params.method]();
+						var output = controllerClass[_params.method](_global);
 						utils.showData(response, output);					
 					} else {
 						utils.show404(response);

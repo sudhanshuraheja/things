@@ -4,8 +4,8 @@ var utils = require('../utils');
 var mongo = require('mongodb');
 var db = new mongo.Db(settings.dbName, new mongo.Server(settings.dbHost, settings.dbPort, {}), {});
 
-exports.base = function() {
-	utils.log('in home');
+exports.base = function(_) {
+	utils.log(_);
 	return 'home-base';
 	/*db.open(function() {
 			console.log('database opened');
