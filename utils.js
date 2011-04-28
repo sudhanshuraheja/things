@@ -6,8 +6,31 @@ var utils = {};
 
 // Call to show the 404 page
 utils.show404 = function(request, response) {
-	var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
-	utils.showData(request, response, data);
+	if(settings.isFullApp && (settings.html404 != '')) {
+		filepath = settings.basepath + settings.html404;
+		var show404PathExistsCallback = function(exists) {
+			if(exists) {
+				var show404ReadFileCallback = function(err, file) {
+					if(err) {
+						utils.log(err);
+						var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
+						utils.showData(request, response, data);
+					} else {
+						var data = { responseCode: 404, contentType: "text/html", html: file };
+						utils.showData(request, response, data);
+					}
+				};
+				fs.readFile(filepath, "binary", show404ReadFileCallback);
+			} else {
+				var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
+				utils.showData(request, response, data);				
+			}
+		};
+		path.exists(filepath, show404PathExistsCallback);
+	} else {
+		var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
+		utils.showData(request, response, data);
+	}
 };
 exports.show404 = utils.show404;
 

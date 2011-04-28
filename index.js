@@ -52,7 +52,7 @@ function server(request, response) {
 	// 3. /public/javascript/*
 	// 4. /public/images/*
 	if(
-	   (request.url == '/favicon.ico') ||
+	   (request.url.indexOf('/public/icons/') == 0) ||
 	   (request.url.indexOf('/public/style/') == 0) ||
 	   (request.url.indexOf('/public/javascript/') == 0) ||
 	   (request.url.indexOf('/public/images/') == 0)

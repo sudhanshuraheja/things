@@ -1,3 +1,5 @@
+// Is this only a JSON API or a full application
+exports.isFullApp = true;
 
 // The details about where the site is running
 exports.hostname = 'localhost';
@@ -17,3 +19,4 @@ exports.routes = [
 
 // The html which gets rendered when a 404 is to be shown
 exports.doc404 = { error: { code: 404, description: "This url does not exist"}};
+exports.html404 = '/public/html/404.html';
