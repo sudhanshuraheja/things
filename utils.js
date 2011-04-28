@@ -4,20 +4,69 @@ var fs = require('fs');
 
 var utils = {};
 
-utils.show404 = function(response) {
+// Call to show the 404 page
+utils.show404 = function(request, response) {
 	var data = { responseCode: 404, contentType: "text/html", html: JSON.stringify(settings.doc404) };
-	utils.showData(response, data);
+	utils.showData(request, response, data);
 };
 exports.show404 = utils.show404;
 
-utils.showData = function(response, data) {
+// Call to show any kind of data
+utils.showData = function(request, response, data) {
 	var responseCode = data.responseCode ? data.responseCode : 200;
 	var contentType = data.contentType ? data.contentType : "text/html";
 	var html = data.html ? data.html : "+++";
 	var dataType = data.dataType ? data.dataType : '';
+	var headers = data.headers ? data.headers : {};
+	var lastModified = data.lastModified ? data.lastModified : '';
 	
-	response.writeHead(responseCode, { "Content-Type": contentType });
-	if(dataType != '') {
+	if((lastModified != '') && (Date.parse(lastModified) <= Date.parse(request.headers['if-modified-since']))) {
+		responseCode = 304;
+	}
+	
+	if(!headers["Content-Type"]) {
+		headers["Content-Type"] = contentType;
+	}
+	
+	if(!headers["Content-Length"]) {
+		headers["Content-Length"] = html.length;
+	}
+	
+	if(!headers["Server"]) {
+		headers["Server"] = "node88/0.0.1";
+	}
+	
+	if(!headers["Date"]) {
+		var dt = new Date();
+		headers["Date"] = dt.toGMTString();
+	}
+	
+	if(!headers["Expires"]) {
+		var dt = new Date();
+		dt.setTime(dt.getTime() + (119 * 1000));
+		headers["Expires"] = dt.toGMTString();
+	}
+	
+	if(!headers["Cache-control"]) {
+		headers["Cache-control"] = 'public, max-age=120';
+	}
+	
+	if(!headers["Last-Modified"]) {
+		if(lastModified != '') {
+			var dt = new Date();
+			dt.setTime(Date.parse(lastModified));
+			headers["Last-Modified"] = dt.toGMTString();
+		} else {
+			var dt = new Date();
+			headers["Last-Modified"] = dt.toGMTString();
+		}
+	}
+	
+	response.writeHead(responseCode, headers);
+
+	if(responseCode == 304) {
+		// Do nothing
+	} else if(dataType != '') {
 		response.write(html, dataType);
 	} else {
 		response.write(html);
@@ -26,21 +75,38 @@ utils.showData = function(response, data) {
 };
 exports.showData = utils.showData;
 
-utils.showStatic = function(response, filepath) {
+utils.getRFC1123Date = function() {
+	// Thu, 28 Apr 2011 05:05:32 GMT
+};
+
+// Show all the static files
+utils.showStatic = function(request, response, filepath) {
 	filepath = settings.basepath + filepath;
 	var fileExistsCallback = function(exists) {
 		if(exists) {
 			var staticReadFileCallback = function(err, file) {
 				if(err) {
-					utils.show404(response);
+					utils.show404(request, response);
 				} else {
-					var output = { responseCode: 200, contentType: "text/plain",  dataType: "binary", html: file};
-					utils.showData(response, output);
+					var staticFileStatCallback = function(err, stats) {
+						if(err) {
+							utils.log(err);
+						} else {
+							//utils.log(stats);
+							//utils.log(Date.parse(stats.mtime));
+							//utils.log(Date.parse(stats.mtime).toUTCString());
+							
+							var contentType = utils.getFileContentType(filepath);
+							var output = { responseCode: 200, contentType: contentType,  dataType: "binary", html: file, lastModified: stats.mtime };
+							utils.showData(request, response, output);
+						}
+					};
+					fs.stat(filepath, staticFileStatCallback);					
 				}
 			};
 			fs.readFile(filepath, "binary", staticReadFileCallback);
 		} else {
-			utils.show404(response);
+			utils.show404(request, response);
 			utils.log(filepath + ' does not exist');
 		}
 	};
@@ -48,6 +114,39 @@ utils.showStatic = function(response, filepath) {
 };
 exports.showStatic = utils.showStatic;
 
+// Get the content-type header to be sent
+utils.getFileContentType = function(url) {
+	var parts = url.split('.');
+	var extension = parts[parts.length - 1].toLowerCase();
+	
+	var contentTypes = {
+		'': 'text/plain',
+		'js': 'application/javascript',
+		'gif': 'image/gif',
+		'png': 'image/png',
+		'css': 'text/css',
+		'ico': 'image/x-icon',
+		'html': 'text/html',
+		'jpeg': 'image/jpeg',
+		'jpg': 'image/jpeg',
+		'json': 'application/json',
+		'svg': 'image/svg+xml',
+		'swf': 'application/x-shockwave-flash',
+		'tar': 'application/x-tar',
+		'tgz': 'application/x-tar-gz',
+		'txt': 'text/plain',
+		'wav': 'audio/x-wav',
+		'xml': 'text/xml',
+		'zip': 'application/zip',
+		'flv': 'video/x-flv'
+	};
+	
+	var ret = contentTypes[extension];
+	return ret ? ret : 'text/plain';
+};
+exports.getFileContentType = utils.getFileContentType;
+
+// Break the get and post values received into associate arrays
 utils.objectify = function(data) {
 	var ret = {};
 	if(data) {
@@ -61,6 +160,7 @@ utils.objectify = function(data) {
 };
 exports.objectify = utils.objectify;
 
+// Break the request into an associative array
 utils.getRequestParams = function(pathname) {
 	var ret = {};
 	var parts = pathname.split('/');
@@ -82,6 +182,7 @@ utils.getRequestParams = function(pathname) {
 };
 exports.getRequestParams = utils.getRequestParams;
 
+// Default log function
 utils.log = function(message, logType) {
 	logType = logType || '----';
 	var dt = new Date();

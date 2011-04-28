@@ -57,7 +57,7 @@ function server(request, response) {
 	   (request.url.indexOf('/public/javascript/') == 0) ||
 	   (request.url.indexOf('/public/images/') == 0)
 	) {
-		utils.showStatic(response, request.url);
+		utils.showStatic(request, response, request.url);
 	} else {
 		
 		// If we're getting post data, there are two callbacks onData and onEnd
@@ -83,14 +83,14 @@ function server(request, response) {
 				
 				var controllerFilePostExistsCallback = function(exists) {
 					if(!exists) {
-						utils.show404(response);
+						utils.show404(request, response);
 					} else {
 						var controllerClass = require(controllerFile);
 						if(controllerClass[_params.method]) {
 							var output = controllerClass[_params.method](_global);
-							utils.showData(response, output);
+							utils.showData(request, response, output);
 						} else {
-							utils.show404(response);						
+							utils.show404(request, response);						
 						}
 					}
 				};
@@ -110,14 +110,14 @@ function server(request, response) {
 			
 			var controllerFileGetExistsCallback = function(exists) {
 				if(!exists) {
-					utils.show404(response);
+					utils.show404(request, response);
 				} else {
 					var controllerClass = require(controllerFile);
 					if(controllerClass[_params.method]) {
 						var output = controllerClass[_params.method](_global);
-						utils.showData(response, output);					
+						utils.showData(request, response, output);					
 					} else {
-						utils.show404(response);
+						utils.show404(request, response);
 					}
 				}
 			};
