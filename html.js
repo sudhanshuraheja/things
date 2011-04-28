@@ -1,16 +1,25 @@
+var settings = require('./settings');
+
 var html = {};
 
 html.page = function(obj) {
 	
 	var title = obj.title ? obj.title : 'Page Title';
+	title += settings.title;
+	
 	var description = obj.description ? obj.description : false;
 	var author = obj.author ? obj.author : false;
 	var favicon = obj.favicon ? obj.favicon : '/public/icons/favicon.ico';
 	var appleTouchIcon = obj.appleTouchIcon ? obj.appleTouchIcon : '/public/icons/apple-touch-icon.png';
 	var analyticsId = obj.analyticsId ? obj.analyticsId : false;
 	
+	var head = obj.head ? obj.head : false;
+	var body = obj.body ? obj.body : false;
+	
+	// Start creating the page
 	var h = [];
 	
+	// First the head
 	h.push('<!doctype html>');
 	h.push('<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->');
 	h.push('<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->');
@@ -37,15 +46,27 @@ html.page = function(obj) {
 	h.push('		<link rel="stylesheet" media="handheld" href="/public/style/handheld.css">');
 	h.push('		<script src="/public/javascript/modernizr-1.7.min.js"></script>');
 	h.push('		<script src="/public/javascript/jquery-1.5.2.min.js"></script>');
+	
+	// Add the head entered by the user
+	if(head) {
+		h.push(head);
+	}
+	
 	h.push('	</head>');
 	h.push('	<body>');
-	h.push('		<div id="container">');
-	h.push('		</div>');
+	
+	// Add the body entered by the user
+	if(body) {
+		h.push(body);
+	}
+	
+	// Add png fix for IE
 	h.push("		<!--[if lt IE 7 ]>");
 	h.push("			<script src='/public/javascript/dd_belatedpng.js'></script>");
 	h.push("			<script> DD_belatedPNG.fix('img, .png_bg');</script>");
 	h.push("		<![endif]-->");
 	
+	// Add google analytics
 	if(analyticsId) {
 		h.push("		<script>");
 		h.push("			var _gaq=[['_setAccount','" + analyticsId + "'],['_trackPageview']];");

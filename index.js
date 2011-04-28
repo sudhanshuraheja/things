@@ -55,9 +55,10 @@ function server(request, response) {
 	   (request.url.indexOf('/public/icons/') == 0) ||
 	   (request.url.indexOf('/public/style/') == 0) ||
 	   (request.url.indexOf('/public/javascript/') == 0) ||
-	   (request.url.indexOf('/public/images/') == 0)
+	   (request.url.indexOf('/public/images/') == 0) ||
+	   (request.url.indexOf('/public/client/') == 0)
 	) {
-		utils.showStatic(request, response, request.url);
+		utils.showStatic(request, response, req.pathname);
 	} else {
 		
 		// If we're getting post data, there are two callbacks onData and onEnd

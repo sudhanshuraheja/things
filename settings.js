@@ -5,6 +5,11 @@ exports.isFullApp = true;
 exports.hostname = 'localhost';
 exports.port = 8080;
 
+// Application specific details
+exports.name = '88things';
+exports.slogan = '88 things to help transform your business';
+exports.title = ' | 88things.com';
+
 // Set your basepath in settings, so that the rest of the system can use it
 exports.basepath = '';
 
