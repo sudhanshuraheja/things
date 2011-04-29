@@ -1,0 +1,14 @@
+Gzip module for node
+https://github.com/donnerjack13589/node.gzip/commits/v0.1.0
+
+CSS3 Help
+http://css3please.com/
+
+NodeJS Complete Documentation
+http://nodejs.org/docs/v0.4.7/api/all.html
+
+Everything about strings
+http://www.quirksmode.org/js/strings.html
+
+Promises Proposal
+http://wiki.commonjs.org/wiki/Promises/A

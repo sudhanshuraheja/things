@@ -38,7 +38,17 @@ node88.windowHashChangeCallback = function(e) {
 	node88.router(parts);
 };
 
-
+/*
+$.ajax(
+	{
+	   url: url,
+	   type: 'GET'
+	   cache: false,
+	   error: function() {},
+	   success: function() {}
+	}
+);
+*/
 
 //
 // Router
@@ -48,6 +58,7 @@ node88.router = function(request) {
 	// Define your controller here
 	// The controller decides the name of your file e.g. /public/client/xxx.js which gets called
 	var controller = request[0] ? request[0] : 'home';
+	
 	
 	// Don't change this
 	// If the module isn't loaded, load the module, then call it's render function
@@ -59,6 +70,44 @@ node88.router = function(request) {
 		window.modules[controller].render();
 	}
 };
+
+
+
+
+//
+// Data Storage
+// use localstorage if available otherwise just save javascript objects
+//
+var store = {
+	jsStorage: {}
+};
+
+store.add = function(key, data) {
+	if(Modernizr.localstorage) {
+		localStorage.setItem(key, data);
+	} else {
+		store.jsStorage[key] = data;
+	}
+};
+
+store.get = function(key) {
+	if(Modernizr.localstorage) {
+		return localStorage.getItem(key);
+	} else {
+		return store.jsStorage[key];
+	}
+};
+
+store.rm = function(key) {
+	if(Modernizr.localstorage) {
+		localStorage.removeItem(key);
+	} else {
+		if(store.jsStorage[key]) {
+			delete store.jsStorage[key];
+		}
+	}
+};
+
 
 
 
