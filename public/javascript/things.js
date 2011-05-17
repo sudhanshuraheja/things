@@ -77,7 +77,7 @@ things.addCenterBox = function(obj) {
 	b.push('	</div>');
 	b.push('</div>');
 	
-	$('.contain').html(b.join(''));
+	$('.playground').html(b.join(''));
 };
 
 things.addMidBox = function(obj) {
@@ -121,7 +121,7 @@ things.addMidBox = function(obj) {
 	b.push('	</div>');
 	b.push('</div>');
 	
-	$('.contain').html(b.join(''));
+	$('.playground').html(b.join(''));
 };
 
 things.addFullBox = function(obj) {
@@ -155,7 +155,83 @@ things.addFullBox = function(obj) {
 	b.push('	</div>');
 	b.push('</div>');
 	
-	$('.contain').html(b.join(''));
+	$('.playground').html(b.join(''));
 };
+
+things.footer = function() {
+	f = [];
+	
+	f.push("Created by <a href=''>Vercingetorix Technologies</a> | ");
+	f.push("<a href=''>Terms of Service</a> | ");
+	f.push("<a href=''>Privacy Policy</a> | ");
+	f.push("<a href=''><b>Support</b></a> | ");
+	f.push("<a href=''>Register</a> | ");
+	f.push("&copy; 2011 All Rights Reserved<br /> ");
+	f.push("Design inspired from the amazing products made by <a href='http://37signals.com'>37signals</a><br />");
+	
+	return f.join('');
+};
+
+
+// Form elements
+things.text = function(obj) {
+	
+	if(!obj.title) obj.title = 'please_pass_the_title';
+	if(!obj.subtitle) obj.subtitle = '';
+	if(!obj.id) obj.id = 'enter_some_id';
+	if(!obj.classes) obj.classes = '';
+	if(!obj.value) obj.value = '';
+
+	f = [];
+	
+	f.push("<label class='form-label' for='" + obj.id + "'>");
+	f.push("	" + obj.title + "<br />");
+	f.push("	<small>" + obj.subtitle + "</small>");
+	f.push("</label><br />");
+	f.push("<input class='form-input " + obj.classes + "' type='text' name='" + obj.id + "' id='" + obj.id + "' value='" + obj.value + "' /><br />");
+	
+	return f.join('');
+};
+
+things.submit = function(obj) {
+	
+	if(!obj.value) obj.value = 'please_enter_a_value';
+	if(!obj.cancel) obj.cancel = '/#!/home';
+	
+	f = [];
+	
+	f.push("<br />");
+	f.push("<input class='button form-submit' type='submit' name='submit' id='submit' value='" + obj.value + "' />");
+	f.push("or <a class='form-cancel' href='" + obj.cancel + "'>Cancel</a>");
+	
+	return f.join('');
+};
+
+things.hidden = function(obj) {
+
+	if(!obj.name) obj.name = 'method';
+	if(!obj.value) obj.value = 'please_enter_a_value';
+
+	return "<input type='hidden' name='" + obj.name + "' value='" + obj.value + "' />";
+};
+
+things.form = function(obj) {
+	
+	if(!obj.data) obj.data = '';
+	if(!obj.method) obj.method = 'GET';
+	if(!obj.action) obj.action = '';
+	if(!obj.id) obj.id = 'please_enter_a_id';
+	
+	f = [];
+	f.push("<form method='" + obj.method + "' action='" + obj.action + "' id='" + obj.id + "'>");
+	f.push(obj.data);
+	f.push("</form>");
+	
+	return f.join('');
+};
+
+ 
+
+
 
 

@@ -218,3 +218,21 @@ utils.log = function(message, logType) {
 	}
 };
 exports.log = utils.log;
+
+//utils.mongo = require('mongodb');
+//exports.mongo = utils.mongo;
+
+//var mongo = require('mongodb');
+//var db = new mongo.Db(settings.dbName, new mongo.Server(settings.dbHost, settings.dbPort, {}), {});
+
+/*
+ db.open(function() {
+ console.log('database opened');
+ db.collection('foo', function(err, collection) {
+ doc = { 'a': 2 };
+ console.log('collection initialized');
+ collection.insert(doc, function() {
+ console.log('doc inserted');
+ });
+ });
+ });*/

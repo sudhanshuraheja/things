@@ -7,7 +7,7 @@ var node88 = {};
 // Load Module - loads a particular file
 // Developer needs to take care if the file has been loaded before or not
 node88.loadModule = function(name) {
-	node88.log('trying to load ' + name);
+	//node88.log('trying to load ' + name);
 	$.getScript('/public/client/' + name + '.js', function() {
 		node88.show(name + ' has been loaded into memory');
 		window.modules[name].render();
@@ -24,13 +24,13 @@ node88.log = function(message) {
 // Write to the on-screen console
 node88.show = function(message) {
 	$('.console').html(message);
-	node88.log(message);
+	//node88.log(message);
 };
 
 // Callback for the hash change function
 node88.windowHashChangeCallback = function(e) {
 	var hash = location.hash.substring(3, location.hash.length);
-	node88.log(hash);
+	//node88.log(hash);
 	node88.show('Loading page ' + hash);
 	
 	// Based on which has you are on, decide what to do next
@@ -38,17 +38,34 @@ node88.windowHashChangeCallback = function(e) {
 	node88.router(parts);
 };
 
-/*
-$.ajax(
-	{
-	   url: url,
-	   type: 'GET'
-	   cache: false,
-	   error: function() {},
-	   success: function() {}
-	}
-);
-*/
+//
+// Ajax Functions
+//
+node88.get = function(url, success, error) {
+	if(!error) error = node88.ajaxError;
+	$.ajax({
+		url: url,
+		type: 'GET',
+		dataType: 'json',
+		error: error,
+		success: success
+	});
+};
+
+node88.post = function(url, success, error) {
+	if(!error) error = node88.ajaxError;
+	$.ajax({
+		url: url,
+		type: 'POST',
+		dataType: 'json',
+		error: error,
+		success: success
+	});
+};
+
+node88.ajaxError = function() {
+
+};
 
 //
 // Router
